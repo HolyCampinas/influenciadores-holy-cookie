@@ -768,7 +768,7 @@ el('producao').innerHTML = D.producao.map(c => `
 /* ---------- limpeza ---------- */
 el('ausentes').innerHTML = D.semDados.length
   ? `<table style="min-width:0"><tbody>` + D.semDados.map(x => `<tr>
-      <td>@${x.h}${x.div ? ' <span class="pill pub">divulgou</span>' : ''}</td>
+      <td><a class="post-l" href="https://www.instagram.com/${x.h}/" target="_blank" rel="noopener">@${x.h}</a>${x.div ? ' <span class="pill pub">divulgou</span>' : ''}</td>
       <td style="color:var(--ink-3); font-family:inherit">${x.motivo}</td></tr>`).join('') + `</tbody></table>`
   : '<span style="color:var(--ink-3)">Nenhum — todos responderam.</span>';
 
@@ -776,7 +776,7 @@ el('drift').innerHTML = D.perfis
   .filter(p => p.segPl && p.seg)
   .map(p => ({ ...p, v: (p.seg - p.segPl) / p.segPl }))
   .sort((a, b) => Math.abs(b.v) - Math.abs(a.v)).slice(0, 10)
-  .map(p => `<tr><td>@${p.h}</td><td class="num">${fmt(p.segPl)}</td>
+  .map(p => `<tr><td><a class="post-l" href="https://www.instagram.com/${p.h}/" target="_blank" rel="noopener">@${p.h}</a></td><td class="num">${fmt(p.segPl)}</td>
     <td class="num">${fmt(p.seg)}</td>
     <td class="num" style="color:${p.v < 0 ? 'var(--crit)' : 'var(--good)'}">${p.v > 0 ? '+' : ''}${(p.v * 100).toFixed(0)}%</td></tr>`).join('');
 </script>
