@@ -543,7 +543,8 @@ el('divulgaram').innerHTML = D.divulgaram.map(x => {
         ? 'não achei — provavelmente foi story ou foto de feed, não reel'
         : 'fora da janela: meus dados dela só voltam até ' + x.desde}</span>`;
   return `<tr>
-    <td><div class="who"><span>@${x.h} <span class="badge-pub">já divulgou</span>${
+    <td><div class="who"><span><a class="post-l" href="https://www.instagram.com/${x.h}/" target="_blank" rel="noopener">@${x.h}</a>
+      <span class="badge-pub">já divulgou</span>${
       x.naPlanilha ? '' : '<span class="achado">fora da planilha</span>'}</span>
       <span class="n">${x.nome}</span></div></td>
     <td class="num">${fmt(x.med)}</td>
