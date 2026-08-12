@@ -84,6 +84,19 @@ header{padding:56px 0 40px; display:flex; flex-direction:column; gap:18px}
 .tile.hi .v{color:var(--alcance)}
 .tile.dim .v{color:var(--seguidores)}
 
+/* ---------- indice ---------- */
+.indice{display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:7px; margin-top:26px}
+.indice a{
+  display:flex; flex-direction:column; gap:1px; padding:9px 12px; text-decoration:none;
+  background:var(--surface); border:1px solid var(--line); border-radius:9px;
+  transition:border-color .13s, transform .13s;
+}
+.indice a:hover{border-color:var(--alcance); transform:translateY(-1px)}
+.indice b{font-size:12.5px; font-weight:650; color:var(--ink); letter-spacing:-.005em}
+.indice span{font-size:10.5px; color:var(--ink-3)}
+@media (prefers-reduced-motion:reduce){.indice a:hover{transform:none}}
+section[id]{scroll-margin-top:16px}
+
 /* ---------- sections ---------- */
 section{margin-top:44px}
 .shead{display:flex; flex-direction:column; gap:6px; margin-bottom:16px}
@@ -332,11 +345,21 @@ footer b{color:var(--ink-2)}
     <div class="tile dim"><span class="k">Alcance realizado</span><span class="v num" id="tRealizado">—</span><span class="s">soma de quem divulgou</span></div>
     <div class="tile hi"><span class="k">Alcance parado</span><span class="v num" id="tParado">—</span><span class="s">top 8 que nunca receberam</span></div>
     <div class="tile"><span class="k">Perfis com dados</span><span class="v num" id="tPerfis">—</span><span class="s" id="sPerfis">—</span></div>
-    <div class="tile"><span class="k">Custo da apuração</span><span class="v num">US$ 3,17</span><span class="s">Apify · 12/08/2026</span></div>
+    <div class="tile"><span class="k">Custo da apuração</span><span class="v num">US$ 3,93</span><span class="s">Apify · 3 rodadas · 12/08/2026</span></div>
   </div>
+  <nav class="indice">
+    <a href="#s-escolhidos"><b>Os escolhidos</b><span>4 criadoras · maiores vídeos</span></a>
+    <a href="#s-buraco"><b>O buraco</b><span>seguidores vs alcance</span></a>
+    <a href="#s-chamar"><b>Quem chamar</b><span>tabela dos 50</span></a>
+    <a href="#s-divulgaram"><b>Já divulgaram</b><span>13 · posts da Holy Cookie</span></a>
+    <a href="#s-videos"><b>Os vídeos</b><span>24 maiores da planilha</span></a>
+    <a href="#s-fora"><b>Divulgam fora da planilha</b><span>10 · 12 posts</span></a>
+    <a href="#s-filma"><b>Como cada um filma</b><span>produção · vídeos medianos</span></a>
+    <a href="#s-limpeza"><b>Limpeza da planilha</b><span>o que revalidar</span></a>
+  </nav>
 </header>
 
-<section id="escolhidos-sec">
+<section id="s-escolhidos">
   <div class="shead">
     <h2>Os escolhidos</h2>
     <p class="sub">
@@ -348,7 +371,7 @@ footer b{color:var(--ink-2)}
   <div class="picks" id="escolhidos"></div>
 </section>
 
-<section>
+<section id="s-buraco">
   <div class="shead">
     <h2>O buraco</h2>
     <p class="sub">
@@ -368,7 +391,7 @@ footer b{color:var(--ink-2)}
   <div class="card card-pad"><div class="rows" id="gap"></div></div>
 </section>
 
-<section>
+<section id="s-chamar">
   <div class="shead">
     <h2>Quem chamar</h2>
     <p class="sub">
@@ -400,7 +423,7 @@ footer b{color:var(--ink-2)}
   </table></div></div>
 </section>
 
-<section>
+<section id="s-divulgaram">
   <div class="shead">
     <h2>Já divulgaram</h2>
     <p class="sub">
@@ -416,7 +439,7 @@ footer b{color:var(--ink-2)}
   </table></div></div>
 </section>
 
-<section>
+<section id="s-videos">
   <div class="shead">
     <h2>Os vídeos</h2>
     <p class="sub">
@@ -433,7 +456,7 @@ footer b{color:var(--ink-2)}
   <div class="vids" id="vids"></div>
 </section>
 
-<section>
+<section id="s-fora">
   <div class="shead">
     <h2>Divulgam e não estão na planilha</h2>
     <p class="sub">
@@ -450,7 +473,7 @@ footer b{color:var(--ink-2)}
   <div class="vids" id="fora"></div>
 </section>
 
-<section>
+<section id="s-filma">
   <div class="shead">
     <h2>Como cada um filma</h2>
     <p class="sub">
@@ -465,7 +488,7 @@ footer b{color:var(--ink-2)}
   <div class="prods" id="producao"></div>
 </section>
 
-<section>
+<section id="s-limpeza">
   <div class="shead">
     <h2>Limpeza da planilha</h2>
     <p class="sub">Os números da planilha são de maio de 2025. Estes são de agora.</p>
