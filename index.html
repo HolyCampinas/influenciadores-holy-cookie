@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Campanha de vídeos virais Holy Cookie — criadores e alcance real</title>
-<meta name="description" content="Criadores para a campanha de vídeos virais com UGC das lojas Fred e Débora: alcance medido em views reais, não seguidores.">
+<meta name="description" content="Seleção dos criadores que vão gravar os próximos vídeos da Holy Cook: alcance medido, perfil de produção e vídeos para assistir.">
 <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
 <meta name="googlebot" content="noindex, nofollow">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8D%AA%3C/text%3E%3C/svg%3E">
@@ -312,23 +312,24 @@ footer b{color:var(--ink-2)}
 <div class="wrap">
 
 <header>
-  <p class="eyebrow">Holy Cookie · campanha de vídeos virais com UGC · lojas Fred e Débora</p>
-  <h1>Seguidor não prevê alcance.</h1>
+  <p class="eyebrow">Holy Cook · lojas Fred e Débora · Campinas, Paulínia e Piracicaba</p>
+  <h1>Quem vai gravar os próximos vídeos da Holy Cook.</h1>
   <p class="lede">
-    Dados reais de <b id="nProf">—</b> perfis da planilha, <b id="nReels">—</b> reels medidos.
-    A lista foi trabalhada por número de seguidores — e é por isso que o produto foi parar
-    nas pessoas erradas. <b>@gigicagil.oficial</b> tem 103 mil seguidores, recebeu cookie,
-    divulgou, e entrega <b>3.278 views</b> por post. É a 32ª em alcance real.
+    Esta é a campanha de vídeos virais com UGC. O trabalho desta página é um só:
+    <b>escolher os criadores que vão gravar.</b> Cada um foi medido pelo que entrega de verdade —
+    alcance real, qualidade de produção e se fala ou dubla — e tem vídeos aqui para você assistir
+    antes de decidir. Um criador bom para um tipo de roteiro não é bom para outro, então a escolha
+    é por vídeo, não por lista.
   </p>
   <div class="tiles">
-    <div class="tile dim"><span class="k">Alcance realizado</span><span class="v num" id="tRealizado">—</span><span class="s">soma de quem divulgou</span></div>
-    <div class="tile hi"><span class="k">Alcance parado</span><span class="v num" id="tParado">—</span><span class="s">top 8 que nunca receberam</span></div>
-    <div class="tile"><span class="k">Perfis com dados</span><span class="v num" id="tPerfis">—</span><span class="s" id="sPerfis">—</span></div>
-    <div class="tile"><span class="k">Custo da apuração</span><span class="v num">US$ 3,93</span><span class="s">Apify · 3 rodadas · 12/08/2026</span></div>
+    <div class="tile hi"><span class="k">Perfil UGC</span><span class="v num" id="tUgc">—</span><span class="s">filmam em Full HD, alcance baixo</span></div>
+    <div class="tile"><span class="k">Criadores medidos</span><span class="v num" id="tMedidos">—</span><span class="s" id="sMedidos">—</span></div>
+    <div class="tile"><span class="k">Vídeos para assistir</span><span class="v num" id="tVideos">—</span><span class="s">teto e dia a dia de cada um</span></div>
+    <div class="tile dim"><span class="k">Já escolhidos</span><span class="v num" id="tEsc">—</span><span class="s">papéis definidos</span></div>
   </div>
   <nav class="indice">
-    <a href="#s-escolhidos"><b>Os escolhidos</b><span>4 criadoras · maiores vídeos</span></a>
-    <a href="#s-buraco"><b>O buraco</b><span>seguidores vs alcance</span></a>
+    <a href="#s-escolhidos"><b>Os escolhidos</b><span>4 · papéis definidos</span></a>
+    <a href="#s-buraco"><b>O buraco</b><span>por que seguidor engana</span></a>
     <a href="#s-chamar"><b>Quem chamar</b><span>tabela dos 50</span></a>
     <a href="#s-divulgaram"><b>Já divulgaram</b><span>13 · posts da Holy Cookie</span></a>
     <a href="#s-videos"><b>Assistir</b><span>teto · dia a dia · filtro UGC</span></a>
@@ -519,40 +520,12 @@ const pct = v => v == null ? '—' : (v < 0.1 && v > 0 ? v.toFixed(2) : v.toFixe
 const el = id => document.getElementById(id);
 
 /* ---------- números do topo ---------- */
-const solidos = D.perfis.filter(p => p.n >= 5);
-const publicaram = solidos.filter(p => p.div);
-const parados = solidos.filter(p => !p.div).slice(0, 8);
-el('nProf').textContent = D.meta.comDados;
-el('nReels').textContent = fmt(D.meta.reels);
-el('tRealizado').textContent = fmt(publicaram.reduce((s, p) => s + p.med, 0));
-el('tParado').textContent = fmt(parados.reduce((s, p) => s + p.med, 0));
-el('tPerfis').textContent = D.meta.comDados + '/' + D.meta.naLista;
-el('sPerfis').textContent = 'todos medidos';
-
-/* ---------- escolhidos ---------- */
-el('escolhidos').innerHTML = D.escolhidos.map(e => `
-  <article class="pick ${e.quem === 'claude' ? 'add' : ''}">
-    <div class="ptop">
-      <img class="pface" src="${e.foto}" alt="Foto de perfil de @${e.h}" width="52" height="52" loading="lazy">
-      <div class="pmeta">
-        <p class="prole">${e.papel}</p>
-        <a class="phandle" href="https://www.instagram.com/${e.h}/" target="_blank" rel="noopener">@${e.h}${e.nome ? ' · ' + e.nome : ''}</a>
-      </div>
-      <span class="pby">${e.quem === 'claude' ? 'sugestão' : 'sua escolha'}</span>
-    </div>
-    <p class="pwhy">${e.por}</p>
-    <div class="pnums">
-      <div class="pnum"><b class="num">${e.hits}/${e.n}</b><span>estouraram</span></div>
-      <div class="pnum"><b class="num">${pct(e.eng)}</b><span>engaj.</span></div>
-      <div class="pnum"><b class="num">${fmt(e.med)}</b><span>mediana</span></div>
-      <div class="pnum"><b class="num">${fmt(e.seg)}</b><span>seguidores</span></div>
-    </div>
-    <div class="ptops">${e.tops.map(t => `
-      <a class="ptop-l" href="${t.u}" target="_blank" rel="noopener">
-        <b class="num">${fmt(t.v)}</b>
-        <span class="cap">${t.c ? '<em>colab · </em>' : ''}${t.leg || 'sem legenda'}</span>
-      </a>`).join('')}</div>
-  </article>`).join('');
+const criadores = new Set(D.acervo.map(x => x.h));
+el('tUgc').textContent = new Set(D.acervo.filter(x => x.hd >= 60 && x.med < 10000).map(x => x.h)).size;
+el('tMedidos').textContent = criadores.size;
+el('sMedidos').textContent = D.fora.length + ' descobertos fora da planilha';
+el('tVideos').textContent = fmt(D.acervo.length);
+el('tEsc').textContent = D.escolhidos.length;
 
 /* ---------- gráfico do buraco ---------- */
 let gapKey = 'seg';
